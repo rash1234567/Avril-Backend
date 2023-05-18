@@ -46,22 +46,21 @@ const login = async (req, res) => {
   try {
     const user = await User.findOne({ email: email });
     if (!user) {
-        return res.status(401).send({ message: "invalid credentials" });
+      return res.status(401).send({ message: "invalid credentials" });
     }
     const isPasswordCorrect = await user.comparePassword(password);
     if (!isPasswordCorrect) {
-        return res.status(401).send({ message: "invalid credentials" });
+      return res.status(401).send({ message: "invalid credentials" });
     }
     const token = user.createJWT();
     console.log(isPasswordCorrect);
     res
       .status(200)
-      .send({ message: "login sucessful", token: token , user:user});
+      .send({ message: "login sucessful", token: token, user: user });
   } catch (error) {
     res.status(500).send({ message: "Server error" });
   }
 };
-
 
 const updateAccount = async (req, res) => {
   try {
