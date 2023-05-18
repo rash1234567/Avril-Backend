@@ -12,8 +12,8 @@ app.use(cors());
 app.use("/api", authRoutes);
 
 mongoose
-  .connect(process.env.DB_Url)
-  .then(() => console.log("connected to mongoDb"))
+  .connect(process.env.DB_URL)
+  .then(() => console.log("connected to mongodb"))
   .then(() => {
     app.listen(PORT, () => {
       console.log(`Server listening on port ${PORT}`);
